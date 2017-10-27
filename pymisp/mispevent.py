@@ -150,6 +150,8 @@ class MISPAttribute(AbstractMISP):
             if kwargs['type'] not in self.__category_type_mapping[kwargs['category']]:
                 raise NewAttributeError('{} and {} is an invalid combination, type for this category has to be in {}'.format(
                     kwargs.get('type'), kwargs.get('category'), (', '.join(self.__category_type_mapping[kwargs['category']]))))
+        if kwargs.get('distribution') and kwargs['distribution'] is None:
+            kwargs.pop('distribution', None)
         # Required
         self.type = kwargs.pop('type', None)
         if self.type is None:
